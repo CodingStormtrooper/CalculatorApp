@@ -33,10 +33,12 @@ function inputDigit(digit) {
   // Overwrite `displayValue` if the current value is '0' otherwise append to it
   if (calculator.waitingForSecondOperand === "true"){
         calculator.displayValue = displayValue + digit;
+        console.log('test inside digital if - secondoperand == true')
         
     }
     
     else {
+        //need to update this so its actually adding and not just conncatinating
         calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
         console.log("test inside digit elses");
     }  
@@ -54,7 +56,8 @@ function _operator_(operatorSet, calcValue) {
     
     if (calculator.waitingForSecondOperand === "false") {
         if (operatorSet === "+") {
-            total = sum(calculator.firstOperand, calculator.displayValue);
+            secondNumer = parseFloat(calculator.displayValue);
+            total = sum(calculator.firstOperand, secondNumer);
             console.log("in else for operator");
             console.log(total);
         }
@@ -63,7 +66,7 @@ function _operator_(operatorSet, calcValue) {
         if (operatorSet === "+") {
             calculator.operator = "+";
             console.log("Calculator operator: " + calculator.operator);
-            calculator.firstOperand = calculator.displayValue;
+            calculator.firstOperand = parseFloat(calculator.displayValue);
             console.log("First operand " + calculator.displayValue);
             calculator.waitingForSecondOperand = "false";
             console.log("Second operand " + calculator.waitingForSecondOperand);
