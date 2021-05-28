@@ -11,6 +11,20 @@ function updateDisplay() {
     display.value = calculator.displayValue;
 
 }
+function updateDisplayAfterDelte(num1) {
+    const display = document.querySelector('.textview');
+    display.value = num1;
+
+}
+
+function deleteDisplay() {
+    console.log('tests delete')
+    console.log('TEST calc display before delete:' + calculator.displayValue);
+    calculator.displayValue = calculator.displayValue.substring(0, calculator.displayValue.length - 1);
+    console.log(calculator.displayValue);
+    updateDisplayAfterDelte(calculator.displayValue);
+
+}
     
     
 function inputDigit(digit) {
@@ -98,8 +112,10 @@ keys.addEventListener("click", e => {
         return;
     }
 
-    if (target.classList.contains('symbol-clear')) {
+    if (target.classList.contains('delete')) {
         console.log('clear', target.value);
+        //remove last digit - delete
+        deleteDisplay();
         return;
 
     }
