@@ -19,6 +19,7 @@ function updateDisplayAfterDelte(num1) {
 
 function deleteDisplay() {
     console.log('tests delete')
+    //need to make if display null than do nothing 
     console.log('TEST calc display before delete:' + calculator.displayValue);
     calculator.displayValue = calculator.displayValue.substring(0, calculator.displayValue.length - 1);
     console.log(calculator.displayValue);
@@ -53,6 +54,8 @@ function sum(num1,num2) {
 function _operator_(operatorSet, calcValue) {
     console.log("in operatorr function: " + operatorSet);
     console.log("calculator display: " + calculator.displayValue);
+    console.log("waitng for second operand: " + calculator.waitingForSecondOperand)
+    console.log("before calculator wait elses ab: ")
     
     if (calculator.waitingForSecondOperand === "false") {
         if (operatorSet === "+") {
@@ -60,6 +63,15 @@ function _operator_(operatorSet, calcValue) {
             total = sum(calculator.firstOperand, secondNumer);
             console.log("in else for operator");
             console.log(total);
+        }
+
+        else if (operatorSet === "=") {
+            console.log("equal equation _____________-")
+            secondNumer = parseFloat(calculator.displayValue);
+            total = sum(calculator.firstOperand, secondNumer);
+            console.log("in else  if for operator set === =");
+            console.log(total);
+            calculator.displayValue = total;
         }
     }
     else {
